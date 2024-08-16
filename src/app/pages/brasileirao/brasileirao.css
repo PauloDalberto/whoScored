@@ -1,0 +1,23 @@
+.container{
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-block: 32px;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.search{
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: var(--fontTitle);
+  font-size: 24px;
+  color: var(--black);
+}
+
