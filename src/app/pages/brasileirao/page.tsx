@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react';
 
 export default function Brasileirao() {
   const [playerName, setPlayerName] = useState<string>('');
-  const [players, setPlayers] = useState<any[]>([]);
-  const [selectedPlayer, setSelectedPlayer] = useState<any | null>(null);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
 
   const leagueId = 39;
 

@@ -1,18 +1,26 @@
 interface Player {
-  id: number;
-  name: string;
-  nationality: string;
-  team: string;
-  year: number;
-  position: string;
-  description: string;
-  goalLink: string;
-}
+  player: {
+    id: number;
+    name: string;
+    firstname: string;
+    lastname: string;
+    age: number;
+    nationality: string;
+    height: string;
+    weight: string;
+    injured: boolean;
+    photo: string;
+  };
 
-interface PlayerResponse {
-  player: Player;
-}
-
-interface ApiResponse {
-  response: PlayerResponse[];
+  statistics: {
+    team: {
+      id: number;
+      name: string;
+      logo: string;
+    };
+    
+    games: {
+      position: string;
+    };
+  }[];
 }
