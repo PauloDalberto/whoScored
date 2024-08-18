@@ -24,15 +24,10 @@
 
 .autocomplete-suggestions {
   width: 100%;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid #ccc;
-  border-radius: 8px;
   max-height: 200px;
   overflow-y: auto;
-  position: absolute;
-  top: calc(100% + 4px); 
-  left: 0;
-  z-index: 1000;
 }
 
 .autocomplete-suggestion {
