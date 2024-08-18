@@ -70,7 +70,6 @@
   animation: show-result .3s forwards;
 }
 
-
 .result h3{
   font-size: 24px;
   font-family: var(--fontTitle);

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 export default function Brasileirao() {
   const [playerName, setPlayerName] = useState<string>('');
   const [players, setPlayers] = useState<Player[]>([]);
-  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
 
   const leagueId = 39;
 
@@ -49,7 +49,10 @@ export default function Brasileirao() {
   }
 
   function handleSelection(playerData: Player) {
-    setSelectedPlayer(playerData);
+    if (selectedPlayers.length < 3) {
+      setSelectedPlayers((prevSelected) => [...prevSelected, playerData]);
+      setPlayerName('');
+    }
   }
 
   return (
@@ -63,6 +66,7 @@ export default function Brasileirao() {
           className="search" 
           onChange={handlePlayer} 
           value={playerName}
+          disabled={selectedPlayers.length >= 3} 
         />
 
         {players.length > 0 && (
@@ -80,35 +84,35 @@ export default function Brasileirao() {
           </div>
         )}
 
-        {selectedPlayer && (
-          <div className='result'>
-            <h3>{selectedPlayer.player.name}</h3>
+        {selectedPlayers.map((player, index) => (
+          <div key={index} className='result'>
+            <h3>{player.player.name}</h3>
 
             <div className='container-items'>
               <div className='item-wrapper'>
                 <div className='item-content'>
-                  <p>{selectedPlayer.player.nationality}</p>
+                  <p>{player.player.nationality}</p>
                 </div>
                 <h3>NAT</h3>
               </div>
 
               <div className='item-wrapper'>
                 <div className='item-content'>
-                  <Image src={selectedPlayer.statistics[0].team.logo} alt={selectedPlayer.player.name} width={50} height={50} />
+                  <Image src={player.statistics[0].team.logo} alt={player.player.name} width={50} height={50} />
                 </div>
                 <h3>TEAM</h3>
               </div>
 
               <div className='item-wrapper'>
                 <div className='item-content'>
-                  <p>{selectedPlayer.statistics[0].games.position}</p>
+                  <p>{player.statistics[0].games.position}</p>
                 </div>
                 <h3>position</h3>
               </div>
 
             </div>
           </div>
-        )}
+        ))}
       </div>
     </section>
   );
