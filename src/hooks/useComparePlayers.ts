@@ -1,14 +1,14 @@
 import players from '@/data/playerData.json';
 
 interface ComparisonResult {
-  nationalityCorrect: boolean;
-  clubCorrect: boolean;
-  positionCorrect: boolean;
   isCorrect: boolean;
+  isNationalityCorrect: boolean;
+  isClubCorrect: boolean;
+  isPositionCorrect: boolean;
 }
 
-export function comparePlayerData(playerData: Player) {
-  const correctPlayer = players.find((player) => player.id === 1); 
+export function comparePlayerData(playerData: Player): ComparisonResult | null {
+  const correctPlayer = players.find((player) => player.id === 1);
 
   if (!correctPlayer) return null;
 
@@ -19,5 +19,3 @@ export function comparePlayerData(playerData: Player) {
     isPositionCorrect: playerData.statistics[0].games.position === correctPlayer.position,
   };
 }
-
-

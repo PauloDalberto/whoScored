@@ -109,8 +109,10 @@
   align-items: center;
 }
 
-
 .correct {
   background-color: green; 
-  color: white;
+}
+
+.correct p{
+  color: var(--white);
 }
