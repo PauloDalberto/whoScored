@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Ganso",
+    "nationality": "Brazil",
+    "club": "Fluminense",
+    "position": "Midfielder"
+  },
+  {
+    "id": 2,
+    "name": "Lucas Moura",
+    "nationality": "Brazil",
+    "club": "Sao Paulo",
+    "position": "Attacker"
+  }
+]

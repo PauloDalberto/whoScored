@@ -24,7 +24,7 @@
 
 .autocomplete-suggestions {
   width: 100%;
-  background-color: white;
+  background-color: var(--white);
   border: 1px solid #ccc;
   max-height: 200px;
   overflow-y: auto;
@@ -107,4 +107,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.correct {
+  background-color: green; 
+  color: white;
 }
