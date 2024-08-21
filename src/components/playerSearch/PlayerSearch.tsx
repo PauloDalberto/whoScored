@@ -5,10 +5,13 @@ import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
 import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
 import { comparePlayerData } from '@/hooks/useComparePlayers';
+import { useState } from 'react';
+import Home from '@/app/page';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
   const players = useFetchPlayers({ playerName, leagueId });
+  const [result, setResult] = useState(false)
 
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData);
@@ -16,7 +19,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     handleSelection(playerData);
 
     if (comparisonResult && comparisonResult.isCorrect) {
-      alert('Parabéns, você acertou!');
+      setResult(true)
     } else if (selectedPlayers.length === 2) {
       alert('Você errou todas as tentativas!');
     }
