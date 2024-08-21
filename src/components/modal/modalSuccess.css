@@ -1,0 +1,34 @@
+@import '../../app/globals.css';
+
+.modal-container{
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0,0,0, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal{
+  background-color: white;
+  padding-inline: 24px;
+  padding-block: 16px;
+  border: 6px solid var(--blue);
+  box-shadow: 0 0 0 10px white;
+  position: relative;
+  min-width: 300px;
+}
+
+.content{
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+
+.content h1{
+  font-family: var(--fontTitle);
+}
