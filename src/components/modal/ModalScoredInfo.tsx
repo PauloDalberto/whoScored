@@ -21,7 +21,7 @@ export default function ModalScoredInfo() {
   return (
     <section className="modal-container" onClick={handleClickOutside}>
       <div className="modal modal-scored-info">
-        <div className="close" onClick={closeModal}>
+        <div className='close-modal' onClick={closeModal}>
           X
         </div>
         <div className="content content-scored-info">
@@ -30,7 +30,8 @@ export default function ModalScoredInfo() {
 
           <ul className="ul">
             <li>Os gols podem ser de qualquer data</li>
-            <li>Os gols são de jogadores em atividade mas que já podem terem trocado de liga/clube</li>
+            <li>Os gols podem ser de jogadores em atividade ou aposentados</li>
+            <li>Os jogadores em atividade podem já terem mudado de liga</li>
             <li>A idade do jogador é a atual idade dele, não a idade em que ele marcou o gol</li>
           </ul>
         </div>

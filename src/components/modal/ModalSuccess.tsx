@@ -24,7 +24,7 @@ export default function ModalSuccess() {
   return (
     <section className="modal-container" onClick={handleClickOutside}>
       <div className='modal modal-success'>
-        <div className='close' onClick={closeModal}>
+        <div className='close-modal' onClick={closeModal}>
           X
         </div>
         <div className='content content-success'>

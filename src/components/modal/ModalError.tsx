@@ -24,7 +24,7 @@ export default function ModalError(){
   return(
     <section className="modal-container" onClick={handleClickOutside}>
       <div className='modal modal-error'>
-        <div className='close' onClick={closeModal}>
+        <div className='close-modal' onClick={closeModal}>
           X
         </div>
         <div className='content content-error'>
