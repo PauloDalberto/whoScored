@@ -18,8 +18,6 @@ export default function Home() {
         <li><Link className='link' href={'/pages/premierLeague'}><IngleterraSvg /><p>Premier League</p></Link></li>
         <li><Link className='link' href={'/pages/serieA'}><ItaliaSvg /><p>Serie A</p></Link></li>
       </ul>
-
-      <ModalError />
     </main>
   );
 }
