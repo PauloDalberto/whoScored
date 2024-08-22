@@ -5,12 +5,15 @@ import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
 import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
 import { comparePlayerData } from '@/hooks/useComparePlayers';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ModalSuccess from '../modal/ModalSuccess';
+import ModalError from '../modal/ModalError';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
   const players = useFetchPlayers({ playerName, leagueId });
-  const [result, setResult] = useState(false)
+  const [correctResult, setCorrectResult] = useState(false)
+  const [errorResult, setErrorResult] = useState(false)
 
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData);
@@ -18,11 +21,17 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     handleSelection(playerData);
 
     if (comparisonResult && comparisonResult.isCorrect) {
-      setResult(true)
+      setCorrectResult(true)
     } else if (selectedPlayers.length === 2) {
-      alert('Você errou todas as tentativas!');
+      setErrorResult(true)
     }
   }
+
+  // useEffect(() => {
+  //   setErrorResult(true)
+  // }, [])
+
+  //fazer uma logica pra carregar toda vez que clicar, porem deixar salvo na primeira vez
 
   return (
     <section className="container">
@@ -35,7 +44,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
           className="search" 
           onChange={handlePlayer} 
           value={playerName}
-          disabled={selectedPlayers.length >= 3} 
+          disabled={selectedPlayers.length >= 3}
         />
 
         {players.length > 0 && (
@@ -86,6 +95,9 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
           );
         })}
       </div>
+
+      {correctResult && <ModalSuccess />}
+      {errorResult && <ModalError />}
     </section>
   );
 }
