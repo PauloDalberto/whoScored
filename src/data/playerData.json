@@ -16,5 +16,23 @@
     "club": "Sao Paulo",
     "position": "Attacker",
     "videoUrl": "/provisorio.mp4"
+  },
+  {
+    "id": 3,
+    "name": "Fabrício Bruno",
+    "nationality": "Brazil",
+    "age": 28,
+    "club": "Flamengo",
+    "position": "Defender",
+    "videoUrl": "/provisorio.mp4"
+  },
+  {
+    "id": 4,
+    "name": "Léo Pereira",
+    "nationality": "Brazil",
+    "age": 28,
+    "club": "Flamengo",
+    "position": "Defender",
+    "videoUrl": "/provisorio.mp4"
   }
 ]
