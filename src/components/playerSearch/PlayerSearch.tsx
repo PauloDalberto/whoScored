@@ -6,7 +6,6 @@ import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
 import { comparePlayerData } from '@/hooks/useComparePlayers';
 import { useState } from 'react';
-import Home from '@/app/page';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
@@ -64,17 +63,16 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
               <div className="container-items">
                 <div className={`item-wrapper`}>
                   <div className={`item-content ${comparisonResult?.isNationalityCorrect ? 'correct' : ''}`}>
-
                     <p>{player.player.nationality}</p>
                   </div>
                   <h3>NAT</h3>
                 </div>
 
                 <div className={`item-wrapper`}>
-                  <div className={`item-content ${comparisonResult?.isClubCorrect ? 'correct' : ''}`}>
-                    <Image src={player.statistics[0].team.logo} alt={player.player.name} width={50} height={50} />
+                  <div className={`item-content ${comparisonResult?.isAgeCorrect ? 'correct' : ''}`}>
+                    <p>{player.player.age}</p>
                   </div>
-                  <h3>TEAM</h3>
+                  <h3>AGE</h3>
                 </div>
 
                 <div className={`item-wrapper`}>
