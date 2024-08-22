@@ -18,7 +18,7 @@
   padding-inline: 24px;
   padding-block: 16px;
   border: 6px solid var(--blue);
-  box-shadow: 0 0 0 10px var(--green);
+  box-shadow: 0 0 0 10px var(--white);
   position: relative;
   min-width: 300px;
   width: 500px;
@@ -33,9 +33,14 @@
   box-shadow: 0 0 0 10px var(--green);
 }
 
+.modal-scored-info{
+  width: 700px;
+  height: 400px;
+}
+
 .close{
   cursor: pointer;
-  color: var(--black);
+  color: var(--red);
   font-weight: bold;
 }
 
@@ -58,6 +63,29 @@
 
 .content-error{
   color: var(--red);
+}
+
+.content-scored-info{
+  display: flex;
+  gap: 8px;
+}
+
+.content-scored-info h2{ 
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.ul{
+  margin-top: 12px;
+  width: 100%;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ul li{
+  list-style: inside;
 }
 
 .player{

@@ -15,8 +15,14 @@ export default function ModalSuccess() {
 
   if (!isOpen) return null;
 
+  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
+
   return (
-    <section className='modal-container' onClick={closeModal}>
+    <section className="modal-container" onClick={handleClickOutside}>
       <div className='modal modal-success'>
         <div className='close' onClick={closeModal}>
           X
@@ -35,3 +41,4 @@ export default function ModalSuccess() {
     </section>
   );
 }
+
