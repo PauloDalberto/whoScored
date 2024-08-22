@@ -1,0 +1,73 @@
+@import '../../app/globals.css';
+
+.modal-container{
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0,0,0, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal{
+  background-color: white;
+  padding-inline: 24px;
+  padding-block: 16px;
+  border: 6px solid var(--blue);
+  box-shadow: 0 0 0 10px var(--green);
+  position: relative;
+  min-width: 300px;
+  width: 500px;
+  height: 300px;
+}
+
+.modal-error{
+  box-shadow: 0 0 0 10px var(--red);
+}
+
+.modal-success{
+  box-shadow: 0 0 0 10px var(--green);
+}
+
+.close{
+  cursor: pointer;
+  color: var(--black);
+  font-weight: bold;
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content h1{
+  font-family: var(--fontTitle);
+  letter-spacing: 1px;
+  font-size: 32px;
+}
+
+.content-success{
+  color: var(--green);
+}
+
+.content-error{
+  color: var(--red);
+}
+
+.player{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 32px;
+  gap: 16px;
+  color: var(--blue);
+  font-family: var(--fontTitle);
+  letter-spacing: 1px;
+}
