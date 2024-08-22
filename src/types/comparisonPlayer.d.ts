@@ -1,6 +1,6 @@
 interface ComparisonResult {
   isCorrect: boolean;
   isNationalityCorrect: boolean;
-  isClubCorrect: boolean;
+  isAgeCorrect: boolean;
   isPositionCorrect: boolean;
 }

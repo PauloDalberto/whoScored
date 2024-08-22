@@ -6,6 +6,7 @@ interface Player {
     lastname: string;
     nationality: string;
     photo: string;
+    age: number;
   };
 
   statistics: {
