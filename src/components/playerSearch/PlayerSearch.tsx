@@ -30,13 +30,14 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   // useEffect(() => {
   //   setErrorResult(true)
   // }, [])
-
   //fazer uma logica pra carregar toda vez que clicar, porem deixar salvo na primeira vez
 
   return (
     <section className="container">
       <div className="content">
-        <Image src="/provisorio.png" alt={title} width={550} height={300} priority />
+        <video width={550} height={300} autoPlay muted loop>
+          <source src='/provisorio.mp4'/>
+        </video>
 
         <input 
           type="text" 
