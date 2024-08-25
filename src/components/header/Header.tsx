@@ -48,10 +48,23 @@ export default function Header() {
           <span>x</span>
         </div>
         <ul>
-          <li><Link className='link' href={'/pages/brasileirao'}><BrasilSvg /><p>Brasileirão</p></Link></li>
-          <li><Link className='link' href={'/pages/premierLeague'}><IngleterraSvg /><p>Premier League</p></Link></li>
-          <li><Link className='link' href={'/pages/serieA'}><ItaliaSvg /><p>Serie A</p></Link></li>
+          <li>
+            <Link className='link' href={'/lang/pages/brasileirao'}>
+              <BrasilSvg /><p>Brasileirão</p>
+            </Link>
+          </li>
+          <li>
+            <Link className='link' href={'/lang/pages/premierLeague'}>
+              <IngleterraSvg /><p>Premier League</p>
+            </Link>
+          </li>
+          <li>
+            <Link className='link' href={'/lang/pages/serieA'}>
+              <ItaliaSvg /><p>Serie A</p>
+            </Link>
+          </li>
         </ul>
+        
       </aside>
 
       <div className={`overlay ${isOpen ? 'show' : ''}`} onClick={toggleSidebar}></div>
