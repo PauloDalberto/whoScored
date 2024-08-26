@@ -8,12 +8,17 @@ import { comparePlayerData } from '@/hooks/useComparePlayers';
 import { useEffect, useState } from 'react';
 import ModalSuccess from '../modal/ModalSuccess';
 import ModalError from '../modal/ModalError';
+import { Locale } from '@/config/i18n.config';
+import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { useParams } from 'next/navigation';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
   const players = useFetchPlayers({ playerName, leagueId });
-  const [correctResult, setCorrectResult] = useState(false)
-  const [errorResult, setErrorResult] = useState(false)
+  const [correctResult, setCorrectResult] = useState(false);
+  const [errorResult, setErrorResult] = useState(false);
+  const { lang } = useParams();
+  const dict = getDictionaryUseClient(lang as Locale);
 
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData);

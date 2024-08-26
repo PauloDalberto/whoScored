@@ -21,25 +21,23 @@ export const Lang = () => {
 
     const newPath = paths.slice(2).join('/')
 
-    return '/' + lng + newPath;
+    return '/' + lng + '/' + newPath;
   }
 
-  console.log(getPathname)
+  console.log(getPathname('en-US'))
   
   return(
     <div className='dropdown' onTouchStart={toggleDropdown} onClick={toggleDropdown}>
       <Cog6ToothIcon className='config'/>
       <ul className={`dropdown-menu ${isOpenDropdown ? 'active' : ''}`}>
-        <li>
-          <label htmlFor="language">Linguagem:</label>
-          {locales.map(lng => {
-            return(
-              <li key={lng.code}>
-                <Link href='/en-US'>{lng.code}</Link>
-              </li>
-            )
-          })}
-        </li>
+        <p>Linguagem:</p>
+        {locales.map(lng => {
+          return(
+            <li key={lng.code}>
+              <Link href={getPathname(lng.code)}>{lng.code}</Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
