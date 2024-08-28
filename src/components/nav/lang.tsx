@@ -2,9 +2,10 @@
 
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { useParams, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { locales } from "./locales";
 import Link from "next/link";
+import './lang.css';
 
 export const Lang = () => {
   const { lang } = useParams();
@@ -12,8 +13,19 @@ export const Lang = () => {
 
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 
+  const [currentLang, setCurrentLang] = useState(lang || localStorage.getItem('selectedLang') || locales[0].code);
+
+  useEffect(() => {
+    setCurrentLang(lang || localStorage.getItem('selectedLang') || locales[0].code);
+  }, [lang]);
+
   const toggleDropdown = () => {
     setIsOpenDropdown(!isOpenDropdown);
+  };
+
+  const handleLangChange = (lng: string) => {
+    localStorage.setItem('selectedLang', lng);
+    setCurrentLang(lng);
   };
 
   const getPathname = (lng: string) => {
@@ -21,20 +33,23 @@ export const Lang = () => {
     const newPath = paths.slice(2).join('/')
     return '/' + lng + '/' + newPath;
   }
-  
-  return(
+
+  return (
     <div className='dropdown' onTouchStart={toggleDropdown} onClick={toggleDropdown}>
       <Cog6ToothIcon className='config'/>
       <ul className={`dropdown-menu ${isOpenDropdown ? 'active' : ''}`}>
         <p>Linguagem:</p>
-        {locales.map(lng => {
-          return(
-            <li key={lng.code}>
-              <Link href={getPathname(lng.code)}>{lng.code}</Link>
-            </li>
-          )
-        })}
+        {locales.map(lng => (
+          <li key={lng.code}>
+            <Link 
+              href={getPathname(lng.code)} 
+              onClick={() => handleLangChange(lng.code)}
+            >
+              {lng.code}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
-  )
+  );
 }
