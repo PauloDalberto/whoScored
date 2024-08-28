@@ -18,7 +18,7 @@ export default function Header() {
   };
 
   const getCurrentLang = () => {
-    return localStorage.getItem('selectedLang') || 'en_US'; // Valor padrão
+    return localStorage.getItem('selectedLang') || 'en-US';
   };
 
   const currentLang = getCurrentLang();

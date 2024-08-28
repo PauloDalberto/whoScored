@@ -5,7 +5,7 @@ import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
 import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
 import { comparePlayerData } from '@/hooks/useComparePlayers';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ModalSuccess from '../modal/ModalSuccess';
 import ModalError from '../modal/ModalError';
 import { Locale } from '@/config/i18n.config';
