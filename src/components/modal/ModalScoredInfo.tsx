@@ -33,6 +33,7 @@ export default function ModalScoredInfo() {
             <li>Os gols podem ser de jogadores em atividade ou aposentados</li>
             <li>Os jogadores em atividade podem já terem mudado de liga</li>
             <li>A idade do jogador é a atual idade dele, não a idade em que ele marcou o gol</li>
+            <li>Se o jogador estiver aposentado, a idade vai ser a idade que ele se aposentou</li>
           </ul>
         </div>
       </div>
