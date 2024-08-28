@@ -21,8 +21,6 @@ export const Lang = () => {
     const newPath = paths.slice(2).join('/')
     return '/' + lng + '/' + newPath;
   }
-
-  console.log(getPathname('en-US'))
   
   return(
     <div className='dropdown' onTouchStart={toggleDropdown} onClick={toggleDropdown}>
