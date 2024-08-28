@@ -2,7 +2,7 @@ import premierLeague from '@/data/PlayerDataPremierLeague.json';
 import serieA from '@/data/PlayerDataSerieA.json';
 import brasileirao from '@/data/PlayerDataBrasileirao.json';
 
-let correctPlayerId = 2;
+let correctPlayerId = 1;
 let lastUpdate = new Date().toLocaleDateString();
 
 export function comparePlayerData(playerData: Player, leagueId: number): ComparisonResult | null {
