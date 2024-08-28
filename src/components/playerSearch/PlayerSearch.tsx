@@ -21,7 +21,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const dict = getDictionaryUseClient(lang as Locale);
 
   function handleSelectionWithComparison(playerData: Player) {
-    const comparisonResult = comparePlayerData(playerData);
+    const comparisonResult = comparePlayerData(playerData, leagueId);
 
     handleSelection(playerData);
 
@@ -31,11 +31,6 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
       setErrorResult(true)
     }
   }
-
-  // useEffect(() => {
-  //   setErrorResult(true)
-  // }, [])
-  //fazer uma logica pra carregar toda vez que clicar, porem deixar salvo na primeira vez
 
   return (
     <section className="container">
@@ -69,28 +64,28 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         )}
 
         {selectedPlayers.map((player, index) => {
-          const comparisonResult = comparePlayerData(player);
+          const comparisonResult = comparePlayerData(player, leagueId);
 
           return (
             <div key={index} className="result">
               <h3>{player.player.name}</h3>
 
               <div className="container-items">
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isNationalityCorrect ? 'correct' : ''}`}>
                     <p>{player.player.nationality}</p>
                   </div>
                   <h3>NAT</h3>
                 </div>
 
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isAgeCorrect ? 'correct' : ''}`}>
                     <p>{player.player.age}</p>
                   </div>
                   <h3>AGE</h3>
                 </div>
 
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isPositionCorrect ? 'correct' : ''}`}>
                     <p>{player.statistics[0].games.position}</p>
                   </div>
@@ -102,7 +97,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess />}
+      {correctResult && <ModalSuccess/>}
       {errorResult && <ModalError />}
     </section>
   );
