@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import { useState } from 'react';
 
-export default function ModalSuccess() {
+export default function ModalSuccess({ correctPlayerName, leagueId }: ModalProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const players = useFetchPlayers({ playerName: 'neymar', leagueId: 71 });
+  const players = useFetchPlayers({ playerName: correctPlayerName, leagueId });
 
   const closeModal = () => {
     setIsOpen(false);
@@ -41,4 +41,3 @@ export default function ModalSuccess() {
     </section>
   );
 }
-
