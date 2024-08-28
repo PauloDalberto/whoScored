@@ -18,9 +18,7 @@ export const Lang = () => {
 
   const getPathname = (lng: string) => {
     const paths = pathname.split('/');
-
     const newPath = paths.slice(2).join('/')
-
     return '/' + lng + '/' + newPath;
   }
 
