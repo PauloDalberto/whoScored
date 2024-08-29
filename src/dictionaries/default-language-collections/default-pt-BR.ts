@@ -18,5 +18,15 @@ export const ptBR = {
     nat: 'Nacionalidade',
     age: 'Idade',
     position: 'Posição'
-  }
+  },
+
+  modalError: {
+    wasClose: "Foi por pouco",
+    wasPlayer: "O jogador era:"
+  },
+
+  modalSuccess: {
+    congrats: "Parabéns",
+    guessPlayer: "Você acertou o jogador"
+  },
 }

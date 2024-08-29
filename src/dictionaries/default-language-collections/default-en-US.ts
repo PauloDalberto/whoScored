@@ -18,5 +18,15 @@ export const enUS = {
     nat: 'Nationality',
     age: 'Age',
     position: 'Position'
-  }
+  },
+
+  modalError: {
+    wasClose: "It was close",
+    wasPlayer: "The player was:"
+  },
+
+  modalSuccess: {
+    congrats: "Congratulations",
+    guessPlayer: "You guessed the player"
+  },
 }
