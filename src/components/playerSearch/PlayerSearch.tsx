@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import Image from 'next/image';
 import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
@@ -17,6 +17,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const players = useFetchPlayers({ playerName, leagueId });
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
+
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
 
@@ -26,9 +27,9 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     handleSelection(playerData);
 
     if (comparisonResult && comparisonResult.isCorrect) {
-      setCorrectResult(true)
+      setCorrectResult(true);
     } else if (selectedPlayers.length === 2) {
-      setErrorResult(true)
+      setErrorResult(true);
     }
   }
 
@@ -36,7 +37,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     <section className="container">
       <div className="content">
         <video width={550} height={300} autoPlay muted loop>
-          <source src='/provisorio.mp4'/> {/*  Preciso pegar a passar o video conforme o video aqui */}
+          <source src={'/provisorio2.mp4'} type='video/mp4'/>
         </video>
 
         <input 
@@ -75,21 +76,21 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
                   <div className={`item-content ${comparisonResult?.isNationalityCorrect ? 'correct' : ''}`}>
                     <p>{player.player.nationality}</p>
                   </div>
-                  <h3>NAT</h3>
+                  <h3>{dict.playerSearch.nat}</h3>
                 </div>
 
                 <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isAgeCorrect ? 'correct' : ''}`}>
                     <p>{player.player.age}</p>
                   </div>
-                  <h3>AGE</h3>
+                  <h3>{dict.playerSearch.age}</h3>
                 </div>
 
                 <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isPositionCorrect ? 'correct' : ''}`}>
                     <p>{player.statistics[0].games.position}</p>
                   </div>
-                  <h3>POSITION</h3>
+                  <h3>{dict.playerSearch.position}</h3>
                 </div>
               </div>
             </div>

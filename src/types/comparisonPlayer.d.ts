@@ -3,4 +3,5 @@ interface ComparisonResult {
   isNationalityCorrect: boolean;
   isAgeCorrect: boolean;
   isPositionCorrect: boolean;
+  videoUrl: string
 }
