@@ -1,9 +1,10 @@
 import premierLeague from '@/data/PlayerDataPremierLeague.json';
 import serieA from '@/data/PlayerDataSerieA.json';
 import brasileirao from '@/data/PlayerDataBrasileirao.json';
+import { updatePlayerIdAtMidnight } from './uptadePlayerId';
 
 export function comparePlayerData(playerData: Player, leagueId: number): ComparisonResult | null {
-  let correctPlayerId = 1;
+  const correctPlayerId = updatePlayerIdAtMidnight();
 
   let players;
   switch (leagueId) {
