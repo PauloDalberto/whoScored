@@ -11,12 +11,14 @@ import ModalError from '../modal/ModalError';
 import { Locale } from '@/config/i18n.config';
 import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
 import { useParams } from 'next/navigation';
+import { showVideo } from '@/hooks/useShowVideo';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
   const players = useFetchPlayers({ playerName, leagueId });
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
+  const videoUrl = showVideo(leagueId) || '';
 
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
@@ -37,7 +39,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     <section className="container">
       <div className="content">
         <video width={550} height={300} autoPlay muted loop>
-          <source src={'/provisorio2.mp4'} type='video/mp4'/>
+          <source src={videoUrl} type='video/mp4' /> 
         </video>
 
         <input 

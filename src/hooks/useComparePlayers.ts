@@ -32,7 +32,5 @@ export function comparePlayerData(playerData: Player, leagueId: number): Compari
     isAgeCorrect,
     isPositionCorrect,
     isCorrect: isNationalityCorrect && isAgeCorrect && isPositionCorrect,
-    videoUrl: correctPlayer.videoUrl
- 
   };
 }
