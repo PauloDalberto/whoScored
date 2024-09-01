@@ -1,17 +1,15 @@
-'use client'
+// playerSearch.tsx
+'use client';
 
 import Image from 'next/image';
-import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
-import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
-import { comparePlayerData } from '@/hooks/useComparePlayers';
 import { useState } from 'react';
 import ModalSuccess from '../modal/ModalSuccess';
 import ModalError from '../modal/ModalError';
 import { Locale } from '@/config/i18n.config';
 import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
 import { useParams } from 'next/navigation';
-import { showVideo } from '@/hooks/useShowVideo';
+import { usePlayerHandlers, useFetchPlayers, showVideo, useGameState, comparePlayerData } from '@/hooks';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
@@ -19,9 +17,11 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
   const videoUrl = showVideo(leagueId) || '';
-
+  
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
+
+  useGameState(leagueId, selectedPlayers, handleSelection);
 
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData, leagueId);
@@ -39,7 +39,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     <section className="container">
       <div className="content">
         <video width={550} height={300} autoPlay muted loop>
-          <source src={videoUrl} type='video/mp4' /> 
+          <source src={videoUrl} type='video/mp4' />
         </video>
 
         <input 
@@ -100,7 +100,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[0].player.name} leagueId={leagueId} />}
+      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[players.length].player.name} leagueId={leagueId} />}
       {errorResult && <ModalError />}
     </section>
   );
