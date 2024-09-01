@@ -29,4 +29,10 @@ export const enUS = {
     congrats: "Congratulations",
     guessPlayer: "You guessed the player"
   },
+
+  header: {
+    brazilian: "Brazilian",
+    premierLeague: "Premier League",
+    serieA: "Serie A"
+  }
 }

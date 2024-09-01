@@ -9,6 +9,9 @@ import BrasilSvg from '../../../public/svg/countries/Brasil';
 import IngleterraSvg from '../../../public/svg/countries/Inglaterra';
 import ItaliaSvg from '../../../public/svg/countries/Italia';
 import { Lang } from '../nav/lang';
+import { useParams } from 'next/navigation';
+import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { Locale } from '@/config/i18n.config';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +19,9 @@ export default function Header() {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const { lang } = useParams();
+  const dict = getDictionaryUseClient(lang as Locale);
 
   const getCurrentLang = () => {
     return localStorage.getItem('selectedLang') || 'en-US';
@@ -28,7 +34,7 @@ export default function Header() {
       <header className="header">
         <Bars3Icon className='menu' onClick={toggleSidebar}/>
         <Link href={`/${currentLang}`}>
-          <h1>Who Scored?</h1>
+          <h1>{dict.site.name}</h1>
         </Link>
         <Lang />
       </header>
@@ -40,17 +46,17 @@ export default function Header() {
         <ul>
           <li>
             <Link className='link' href={`/${currentLang}/pages/brasileirao`}>
-              <BrasilSvg /><p>Brasileirão</p>
+              <BrasilSvg /><p>{dict.header.brazilian}</p>
             </Link>
           </li>
           <li>
             <Link className='link' href={`/${currentLang}/pages/premierLeague`}>
-              <IngleterraSvg /><p>Premier League</p>
+              <IngleterraSvg /><p>{dict.header.premierLeague}</p>
             </Link>
           </li>
           <li>
             <Link className='link' href={`/${currentLang}/pages/serieA`}>
-              <ItaliaSvg /><p>Serie A</p>
+              <ItaliaSvg /><p>{dict.header.serieA}</p>
             </Link>
           </li>
         </ul>

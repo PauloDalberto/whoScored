@@ -29,4 +29,10 @@ export const ptBR = {
     congrats: "Parabéns",
     guessPlayer: "Você acertou o jogador"
   },
+
+  header: {
+    brazilian: "Brasileirão",
+    premierLeague: "Premier League",
+    serieA: "Série A"
+  }
 }

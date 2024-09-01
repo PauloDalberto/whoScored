@@ -36,7 +36,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   return (
     <section className="container">
       <div className="content">
-        <video width={550} height={300} autoPlay muted loop>
+        <video autoPlay muted loop className='video'>
           <source src={videoUrl} type='video/mp4' />
         </video>
 
