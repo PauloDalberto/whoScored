@@ -17,7 +17,10 @@ export const ptBR = {
   playerSearch: {
     nat: 'Nacionalidade',
     age: 'Idade',
-    position: 'Posição'
+    position: 'Posição',
+    guess: '',
+    to3: 'tentaiva de 3 possiveis',
+    exhausted: 'Você esgotou todas as tentativas'
   },
 
   modalError: {

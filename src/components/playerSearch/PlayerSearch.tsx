@@ -42,11 +42,15 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
 
         <input 
           type="text" 
-          placeholder={`${selectedPlayers.length + 1} tentativa de 3 possíveis`}
+          placeholder={`${
+            selectedPlayers.length + 1 == 4 
+            ? dict.playerSearch.exhausted
+            : dict.playerSearch.guess + ' ' + (selectedPlayers.length + 1) + ' ' + dict.playerSearch.to3}`}
           className="search" 
           onChange={handlePlayer} 
           value={playerName}
           disabled={selectedPlayers.length >= 3}
+          
         />
 
         {players.length > 0 && (

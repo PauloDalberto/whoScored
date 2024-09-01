@@ -17,7 +17,10 @@ export const enUS = {
   playerSearch: {
     nat: 'Nationality',
     age: 'Age',
-    position: 'Position'
+    position: 'Position',
+    guess: 'Guess',
+    to3: 'to 3',
+    exhausted: 'You have exhausted all attempts'
   },
 
   modalError: {
