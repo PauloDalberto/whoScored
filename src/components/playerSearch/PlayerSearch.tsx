@@ -21,8 +21,6 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
 
-  useGameState(leagueId, selectedPlayers, handleSelection);
-
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData, leagueId);
 
@@ -100,7 +98,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[players.length].player.name} leagueId={leagueId} />}
+      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[0].player.name} leagueId={leagueId} />}
       {errorResult && <ModalError />}
     </section>
   );
