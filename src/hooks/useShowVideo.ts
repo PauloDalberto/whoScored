@@ -3,7 +3,7 @@ import serieA from '@/data/PlayerDataSerieA.json';
 import brasileirao from '@/data/PlayerDataBrasileirao.json';
 
 export function showVideo(leagueId: number): string | null {
-  const correctPlayerId = 1;
+  const currentDate = new Date().toLocaleDateString();
 
   let players;
   switch (leagueId) {
@@ -20,7 +20,7 @@ export function showVideo(leagueId: number): string | null {
       return null;
   }
 
-  const correctPlayer = players.find((player) => player.id === correctPlayerId);
+  const correctPlayer = players.find((player) => player.date === currentDate);
   if (!correctPlayer) return null;
 
   return correctPlayer.videoUrl;
