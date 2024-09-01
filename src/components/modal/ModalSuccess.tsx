@@ -4,10 +4,16 @@ import './modal.css';
 import Image from 'next/image';
 import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import { useState } from 'react';
+import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { Locale } from '@/config/i18n.config';
+import { useParams } from 'next/navigation';
 
-export default function ModalSuccess() {
+export default function ModalSuccess({ correctPlayerName, leagueId }: ModalProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const players = useFetchPlayers({ playerName: 'neymar', leagueId: 71 });
+  const players = useFetchPlayers({ playerName: correctPlayerName, leagueId });
+
+  const { lang } = useParams();
+  const dict = getDictionaryUseClient(lang as Locale);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -28,8 +34,8 @@ export default function ModalSuccess() {
           X
         </div>
         <div className='content content-success'>
-          <h1>Parabéns</h1>
-          Você acertou o jogador 
+          <h1>{dict.modalSuccess.congrats}</h1>
+          {dict.modalSuccess.guessPlayer}
           {players.map((playerData) => (
             <div className='player' key={playerData.player.id}>
               <Image src={playerData.player.photo} width={70} height={70} alt='player'/>
@@ -41,4 +47,3 @@ export default function ModalSuccess() {
     </section>
   );
 }
-

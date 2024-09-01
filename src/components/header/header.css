@@ -1,4 +1,5 @@
-@import '../../app/globals.css';
+@import '../../app/[lang]/globals.css';
+
 
 .header{
   width: 100%;

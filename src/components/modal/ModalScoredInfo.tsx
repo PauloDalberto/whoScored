@@ -1,10 +1,16 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import './modal.css';
 import { useState } from 'react';
+import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { Locale } from '@/config/i18n.config';
 
 export default function ModalScoredInfo() {
   const [isOpen, setIsOpen] = useState(true);
+
+  const { lang } = useParams();
+  const dict = getDictionaryUseClient(lang as Locale);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -25,14 +31,15 @@ export default function ModalScoredInfo() {
           X
         </div>
         <div className="content content-scored-info">
-          <h1>Como funciona?</h1>
-          <h2>Você terá 3 tentativas de descobrir quem é o jogador que marcou o gol acima</h2>
+          <h1>{dict.modalInfo.howItWork}</h1>
+          <h2>{dict.modalInfo.threeAttempts}</h2>
 
           <ul className="ul">
-            <li>Os gols podem ser de qualquer data</li>
-            <li>Os gols podem ser de jogadores em atividade ou aposentados</li>
-            <li>Os jogadores em atividade podem já terem mudado de liga</li>
-            <li>A idade do jogador é a atual idade dele, não a idade em que ele marcou o gol</li>
+            <li>{dict.modalInfo.goalsAnyDate}</li>
+            <li>{dict.modalInfo.retiredPlayers}</li>
+            <li>{dict.modalInfo.transferredPlayers}</li>
+            <li>{dict.modalInfo.currentAge}</li>
+            <li>{dict.modalInfo.retiredAge}</li>
           </ul>
         </div>
       </div>

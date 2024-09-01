@@ -4,7 +4,7 @@ export function useFetchPlayers({ playerName, leagueId }: UseFetchPlayersProps) 
   const [players, setPlayers] = useState<Player[]>([]);
 
   useEffect(() => {
-    if (playerName) {
+    if (playerName && playerName.length >= 4) {
       const fetchPlayers = async () => {
         const url = `https://api-football-v1.p.rapidapi.com/v3/players?search=${encodeURIComponent(playerName)}&league=${leagueId}`;
 

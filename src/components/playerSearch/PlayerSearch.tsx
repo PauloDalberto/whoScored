@@ -1,42 +1,43 @@
+// playerSearch.tsx
 'use client';
 
 import Image from 'next/image';
-import { usePlayerHandlers } from '@/hooks/usePlayerhandlers';
-import { useFetchPlayers } from '@/hooks/useEffectPlayers';
 import './playerSearch.css';
-import { comparePlayerData } from '@/hooks/useComparePlayers';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ModalSuccess from '../modal/ModalSuccess';
 import ModalError from '../modal/ModalError';
+import { Locale } from '@/config/i18n.config';
+import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { useParams } from 'next/navigation';
+import { usePlayerHandlers, useFetchPlayers, showVideo, useGameState, comparePlayerData } from '@/hooks';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
   const players = useFetchPlayers({ playerName, leagueId });
-  const [correctResult, setCorrectResult] = useState(false)
-  const [errorResult, setErrorResult] = useState(false)
+  const [correctResult, setCorrectResult] = useState(false);
+  const [errorResult, setErrorResult] = useState(false);
+  const videoUrl = showVideo(leagueId) || '';
+  
+  const { lang } = useParams();
+  const dict = getDictionaryUseClient(lang as Locale);
 
   function handleSelectionWithComparison(playerData: Player) {
-    const comparisonResult = comparePlayerData(playerData);
+    const comparisonResult = comparePlayerData(playerData, leagueId);
 
     handleSelection(playerData);
 
     if (comparisonResult && comparisonResult.isCorrect) {
-      setCorrectResult(true)
+      setCorrectResult(true);
     } else if (selectedPlayers.length === 2) {
-      setErrorResult(true)
+      setErrorResult(true);
     }
   }
-
-  // useEffect(() => {
-  //   setErrorResult(true)
-  // }, [])
-  //fazer uma logica pra carregar toda vez que clicar, porem deixar salvo na primeira vez
 
   return (
     <section className="container">
       <div className="content">
         <video width={550} height={300} autoPlay muted loop>
-          <source src='/provisorio.mp4'/>
+          <source src={videoUrl} type='video/mp4' />
         </video>
 
         <input 
@@ -64,32 +65,32 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         )}
 
         {selectedPlayers.map((player, index) => {
-          const comparisonResult = comparePlayerData(player);
+          const comparisonResult = comparePlayerData(player, leagueId);
 
           return (
             <div key={index} className="result">
               <h3>{player.player.name}</h3>
 
               <div className="container-items">
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isNationalityCorrect ? 'correct' : ''}`}>
                     <p>{player.player.nationality}</p>
                   </div>
-                  <h3>NAT</h3>
+                  <h3>{dict.playerSearch.nat}</h3>
                 </div>
 
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isAgeCorrect ? 'correct' : ''}`}>
                     <p>{player.player.age}</p>
                   </div>
-                  <h3>AGE</h3>
+                  <h3>{dict.playerSearch.age}</h3>
                 </div>
 
-                <div className={`item-wrapper`}>
+                <div className="item-wrapper">
                   <div className={`item-content ${comparisonResult?.isPositionCorrect ? 'correct' : ''}`}>
                     <p>{player.statistics[0].games.position}</p>
                   </div>
-                  <h3>POSITION</h3>
+                  <h3>{dict.playerSearch.position}</h3>
                 </div>
               </div>
             </div>
@@ -97,7 +98,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess />}
+      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[0].player.name} leagueId={leagueId} />}
       {errorResult && <ModalError />}
     </section>
   );

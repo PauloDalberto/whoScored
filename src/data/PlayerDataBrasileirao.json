@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Ganso",
+    "nationality": "Brazil",
+    "club": "Fluminense",
+    "age": 35,
+    "position": "Midfielder",
+    "videoUrl": "/provisorio.mp4"
+  },
+  {
+    "id": 2,
+    "name": "Lucas Moura",
+    "nationality": "Brazil",
+    "age": 32,
+    "club": "Sao Paulo",
+    "position": "Attacker",
+    "videoUrl": "/provisorio2.mp4"
+  }
+]
