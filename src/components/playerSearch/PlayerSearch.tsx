@@ -1,4 +1,3 @@
-// playerSearch.tsx
 'use client';
 
 import Image from 'next/image';
@@ -12,21 +11,21 @@ import { useParams } from 'next/navigation';
 import { usePlayerHandlers, useFetchPlayers, showVideo, comparePlayerData } from '@/hooks';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
-  const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
+  const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers(leagueId);
   const players = useFetchPlayers({ playerName, leagueId });
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
   const videoUrl = showVideo(leagueId) || '';
   const isDisabled = selectedPlayers.length >= 3 || correctResult;
-  
+
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
   
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData, leagueId);
-    
+
     handleSelection(playerData);
-    
+
     if (comparisonResult && comparisonResult.isCorrect) {
       setCorrectResult(true);
     } else if (selectedPlayers.length === 2) {
@@ -102,7 +101,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[0].player.name} leagueId={leagueId} />}
+      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[selectedPlayers.length - 1].player.name} leagueId={leagueId} />}
       {errorResult && <ModalError />}
     </section>
   );
