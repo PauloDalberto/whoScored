@@ -2,8 +2,7 @@
 
 .container{
   width: 100%;
-  height: 100vh;
-  max-width: 800px;
+  max-width: 550px;
   margin: 0 auto;
 }
 
@@ -11,29 +10,78 @@
   margin-top: 24px;
   font-family: var(--fontTitle);
   letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
 }
 
 .ul-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   margin-top: 12px;
+  gap: 8px;
 }
 
 .link{
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-inline: 12px;
-  padding-block: 8px;
   font-family: var(--fontTitle);
   gap: 12px;
   border-radius: 8px;
   font-size: 32px;
   background-color: var(--blue);
+  width: 550px;
+  padding-block: 8px;
+  padding-inline: 16px;
+  transition: .3s;
 }
 
 .link p{
   color: var(--white);
   letter-spacing: 1px;
+}
+
+.home-infos{
+  margin-top: 24px;
+  padding-inline: 12px;
+}
+
+.home-infos h2{
+  display: flex;
+  justify-content: center;
+  font-family: var(--fontTitle);
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.home-infos h3{
+  font-family: var(--fontTitle);
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.home-infos p, li{
+  font-family: var(--fontText);
+  font-size: 18px;
+}
+
+.what-its, .rules{
+  display: flex;
+  flex-direction: column;
+  margin-block: 16px;
+  gap: 4px;
+}
+
+@media (max-width: 600px){
+  .link{
+    width: 300px;
+    transition: .3s;
+  }
+  .home-infos h2{
+    font-size: 32px;
+  }
 }

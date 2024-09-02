@@ -34,7 +34,7 @@ export default function Header() {
       <header className="header">
         <Bars3Icon className='menu' onClick={toggleSidebar}/>
         <Link href={`/${currentLang}`}>
-          <h1>{dict.site.name}</h1>
+          <h1>{dict.home.name}</h1>
         </Link>
         <Lang />
       </header>
@@ -43,19 +43,22 @@ export default function Header() {
         <div className={`close`} onClick={toggleSidebar}>
           <span>x</span>
         </div>
+
+        <h1 className='sidebar-title'>{dict.home.name}</h1>
+
         <ul>
           <li>
-            <Link className='link' href={`/${currentLang}/pages/brasileirao`}>
+            <Link className='link-header' href={`/${currentLang}/pages/brasileirao`}>
               <BrasilSvg /><p>{dict.header.brazilian}</p>
             </Link>
           </li>
           <li>
-            <Link className='link' href={`/${currentLang}/pages/premierLeague`}>
+            <Link className='link-header' href={`/${currentLang}/pages/premierLeague`}>
               <IngleterraSvg /><p>{dict.header.premierLeague}</p>
             </Link>
           </li>
           <li>
-            <Link className='link' href={`/${currentLang}/pages/serieA`}>
+            <Link className='link-header' href={`/${currentLang}/pages/serieA`}>
               <ItaliaSvg /><p>{dict.header.serieA}</p>
             </Link>
           </li>

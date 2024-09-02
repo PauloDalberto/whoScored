@@ -1,7 +1,11 @@
 export const ptBR = {
-  site: {
+  home: {
     name: 'Who Scored?',
-    description: 'Você se considera um conhecedor de futebol? Tente adivinhar quem marcou aquele gol com novos gols diariamente!'
+    description: 'Você se considera um conhecedor de futebol? Tente adivinhar quem marcou aquele gol com novos gols diariamente!',
+    welcome: 'Seja bem vindo ao Who Scored!',
+    about: 'Sobre o jogo',
+    rules: 'Regras',
+    explanationAbout: 'O Who Scored é um jogo no qual você terá 3 tentativas para acertar o jogador que marcou o gol mostrado de acordo com a liga! O jogo atualiza atualiza todos os dias, então sempre temos novos gols para você adivinhar',
   },
 
   modalInfo: {
