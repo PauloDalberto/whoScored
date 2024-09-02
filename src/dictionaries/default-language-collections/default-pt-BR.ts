@@ -19,7 +19,7 @@ export const ptBR = {
     age: 'Idade',
     position: 'Posição',
     guess: '',
-    to3: 'tentaiva de 3 possiveis',
+    to3: 'tentativas de 3 possiveis',
     exhausted: 'Você esgotou todas as tentativas'
   },
 
