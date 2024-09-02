@@ -18,5 +18,45 @@
     "position": "Attacker",
     "videoUrl": "/provisorio2.mp4",
     "date": "02/09/2024"
+  },
+  {
+    "id": 3,
+    "name": "Ganso",
+    "nationality": "Brazil",
+    "club": "Fluminense",
+    "age": 35,
+    "position": "Midfielder",
+    "videoUrl": "/provisorio.mp4",
+    "date": "03/09/2024"
+  },
+  {
+    "id": 4,
+    "name": "Lucas Moura",
+    "nationality": "Brazil",
+    "age": 32,
+    "club": "Sao Paulo",
+    "position": "Attacker",
+    "videoUrl": "/provisorio2.mp4",
+    "date": "04/09/2024"
+  },
+  {
+    "id": 5,
+    "name": "Ganso",
+    "nationality": "Brazil",
+    "club": "Fluminense",
+    "age": 35,
+    "position": "Midfielder",
+    "videoUrl": "/provisorio.mp4",
+    "date": "05/09/2024"
+  },
+  {
+    "id": 6,
+    "name": "Lucas Moura",
+    "nationality": "Brazil",
+    "age": 32,
+    "club": "Sao Paulo",
+    "position": "Attacker",
+    "videoUrl": "/provisorio2.mp4",
+    "date": "06/09/2024"
   }
 ]
