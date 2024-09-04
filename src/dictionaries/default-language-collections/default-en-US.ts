@@ -1,7 +1,11 @@
 export const enUS = {
-  site: {
+  home: {
     name: 'Who Scored?',
-    description: 'Do you think you are a football connoisseur? Try to guess who scored that goal with new goals daily!'
+    description: 'Do you think you are a football connoisseur? Try to guess who scored that goal with new goals daily!',
+    welcome: 'Welcome to Who Scored!',
+    about: 'About the game',
+    rules: 'Rules',
+    explanationAbout: 'Who Scored is a game in which you will have 3 attempts to guess the player who scored the goal shown according to the league! The game updates every day, so we always have new goals for you to guess',
   },
 
   modalInfo:{
@@ -17,7 +21,10 @@ export const enUS = {
   playerSearch: {
     nat: 'Nationality',
     age: 'Age',
-    position: 'Position'
+    position: 'Position',
+    guess: 'Guess',
+    to3: 'to 3',
+    exhausted: 'You have exhausted all attempts'
   },
 
   modalError: {
@@ -29,4 +36,10 @@ export const enUS = {
     congrats: "Congratulations",
     guessPlayer: "You guessed the player"
   },
+
+  header: {
+    brazilian: "Brazilian",
+    premierLeague: "Premier League",
+    serieA: "Serie A"
+  }
 }

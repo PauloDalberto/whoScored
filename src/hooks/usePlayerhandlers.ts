@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useStorageProgress } from '@/hooks';
 
-export function usePlayerHandlers() {
+export function usePlayerHandlers(leagueId: number) {
   const [playerName, setPlayerName] = useState<string>('');
-  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
+  const currentDate = new Date().toLocaleDateString();
+  const [selectedPlayers, setSelectedPlayers] = useStorageProgress<Player[]>(`selectedPlayers_${leagueId}`, []);
+
+  useEffect(() => {
+    const savedDate = localStorage.getItem(`date_${leagueId}`);
+
+    if (savedDate !== currentDate) {
+      localStorage.setItem(`date_${leagueId}`, currentDate);
+      setSelectedPlayers([]);
+    }
+  }, [currentDate, leagueId, setSelectedPlayers]);
 
   const handlePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
@@ -19,6 +30,6 @@ export function usePlayerHandlers() {
     playerName,
     selectedPlayers,
     handlePlayer,
-    handleSelection
+    handleSelection,
   };
 }

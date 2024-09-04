@@ -44,6 +44,7 @@ export const Lang = () => {
             <Link 
               href={getPathname(lng.code)} 
               onClick={() => handleLangChange(lng.code)}
+              className="text"
             >
               {lng.code}
             </Link>

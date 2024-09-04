@@ -1,4 +1,3 @@
-// playerSearch.tsx
 'use client';
 
 import Image from 'next/image';
@@ -9,18 +8,19 @@ import ModalError from '../modal/ModalError';
 import { Locale } from '@/config/i18n.config';
 import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
 import { useParams } from 'next/navigation';
-import { usePlayerHandlers, useFetchPlayers, showVideo, useGameState, comparePlayerData } from '@/hooks';
+import { usePlayerHandlers, useFetchPlayers, showVideo, comparePlayerData } from '@/hooks';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
-  const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers();
+  const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers(leagueId);
   const players = useFetchPlayers({ playerName, leagueId });
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
   const videoUrl = showVideo(leagueId) || '';
-  
+  const isDisabled = selectedPlayers.length >= 3 || correctResult;
+
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
-
+  
   function handleSelectionWithComparison(playerData: Player) {
     const comparisonResult = comparePlayerData(playerData, leagueId);
 
@@ -36,17 +36,20 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   return (
     <section className="container">
       <div className="content">
-        <video width={550} height={300} autoPlay muted loop>
+        <video autoPlay muted loop className='video'>
           <source src={videoUrl} type='video/mp4' />
         </video>
 
         <input 
           type="text" 
-          placeholder={`${selectedPlayers.length + 1} tentativa de 3 possíveis`}
+          placeholder={`${
+            selectedPlayers.length + 1 == 4 
+            ? dict.playerSearch.exhausted
+            : dict.playerSearch.guess + ' ' + (selectedPlayers.length + 1) + ' ' + dict.playerSearch.to3}`}
           className="search" 
           onChange={handlePlayer} 
           value={playerName}
-          disabled={selectedPlayers.length >= 3}
+          disabled={isDisabled || undefined}
         />
 
         {players.length > 0 && (
@@ -98,7 +101,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         })}
       </div>
 
-      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[0].player.name} leagueId={leagueId} />}
+      {correctResult && <ModalSuccess correctPlayerName={selectedPlayers[selectedPlayers.length - 1].player.name} leagueId={leagueId} />}
       {errorResult && <ModalError />}
     </section>
   );
