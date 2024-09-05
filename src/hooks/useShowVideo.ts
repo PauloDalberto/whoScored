@@ -1,26 +1,18 @@
-import premierLeague from '@/data/PlayerDataPremierLeague.json';
-import serieA from '@/data/PlayerDataSerieA.json';
-import brasileirao from '@/data/PlayerDataBrasileirao.json';
+import { fetchPlayersData } from "@/data/fetchPlayers";
 
-export function showVideo(leagueId: number): string | null {
+export async function showVideo(leagueId: number): Promise<string | null> {
   const currentDate = new Date().toLocaleDateString();
 
   let players;
-  switch (leagueId) {
-    case 39:
-      players = premierLeague;
-      break;
-    case 71:
-      players = brasileirao;
-      break;
-    case 135:
-      players = serieA;
-      break;
-    default:
-      return null;
+
+  try {
+    players = await fetchPlayersData(leagueId);
+  } catch (error) {
+    console.error('Erro ao buscar jogadores:', error);
+    return null;
   }
 
-  const correctPlayer = players.find((player) => player.date === currentDate);
+  const correctPlayer = players.find((player: any) => player.date === currentDate);
   if (!correctPlayer) return null;
 
   return correctPlayer.videoUrl;
