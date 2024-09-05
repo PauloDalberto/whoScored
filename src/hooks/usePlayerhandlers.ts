@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react';
 import { useStorageProgress } from '@/hooks';
 
@@ -7,11 +9,13 @@ export function usePlayerHandlers(leagueId: number) {
   const [selectedPlayers, setSelectedPlayers] = useStorageProgress<Player[]>(`selectedPlayers_${leagueId}`, []);
 
   useEffect(() => {
-    const savedDate = localStorage.getItem(`date_${leagueId}`);
+    if (typeof window !== 'undefined') {
+      const savedDate = localStorage.getItem(`date_${leagueId}`);
 
-    if (savedDate !== currentDate) {
-      localStorage.setItem(`date_${leagueId}`, currentDate);
-      setSelectedPlayers([]);
+      if (savedDate !== currentDate) {
+        localStorage.setItem(`date_${leagueId}`, currentDate);
+        setSelectedPlayers([]);
+      }
     }
   }, [currentDate, leagueId, setSelectedPlayers]);
 

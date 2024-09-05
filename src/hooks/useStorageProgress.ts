@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react';
 
 export function useStorageProgress<T>(key: string, initialValue: T) {
@@ -12,7 +14,9 @@ export function useStorageProgress<T>(key: string, initialValue: T) {
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(storedValue));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(storedValue));
+    }
   }, [key, storedValue]);
 
   return [storedValue, setStoredValue] as const;
