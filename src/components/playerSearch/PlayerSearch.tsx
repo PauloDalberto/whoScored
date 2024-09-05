@@ -8,28 +8,37 @@ import ModalError from '../modal/ModalError';
 import { Locale } from '@/config/i18n.config';
 import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
 import { useParams } from 'next/navigation';
-import { usePlayerHandlers, useFetchPlayers, showVideo, comparePlayerData } from '@/hooks';
+import { usePlayerHandlers, useFetchPlayers, comparePlayerData } from '@/hooks';
+import { useGetData } from '@/hooks/useGetData';
 
 export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
   const { playerName, selectedPlayers, handlePlayer, handleSelection } = usePlayerHandlers(leagueId);
   const players = useFetchPlayers({ playerName, leagueId });
   const [correctResult, setCorrectResult] = useState(false);
   const [errorResult, setErrorResult] = useState(false);
-  const videoUrl = showVideo(leagueId) || '';
+  const { videoUrl, loading, comparisonResults, setComparisonResults } = useGetData(leagueId, selectedPlayers);
   const isDisabled = selectedPlayers.length >= 3 || correctResult;
 
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
-  
-  function handleSelectionWithComparison(playerData: Player) {
-    const comparisonResult = comparePlayerData(playerData, leagueId);
 
+  async function handleSelectionWithComparison(playerData: Player) {
     handleSelection(playerData);
 
-    if (comparisonResult && comparisonResult.isCorrect) {
-      setCorrectResult(true);
-    } else if (selectedPlayers.length === 2) {
-      setErrorResult(true);
+    try {
+      const comparisonResult = await comparePlayerData(playerData, leagueId);
+      if (comparisonResult && comparisonResult.isCorrect) {
+        setCorrectResult(true);
+      } else if (selectedPlayers.length === 2) {
+        setErrorResult(true);
+      }
+
+      setComparisonResults((prevResults) => ({
+        ...prevResults,
+        [playerData.player.id]: comparisonResult,
+      }));
+    } catch (error) {
+      console.error('Erro ao comparar jogador:', error);
     }
   }
 
@@ -37,19 +46,25 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
     <section className="container">
       <div className="content">
         <video autoPlay muted loop className='video'>
-          <source src={videoUrl} type='video/mp4' />
+          {loading ? (
+            <p>Carregando vídeo...</p>
+          ) : videoUrl ? (
+              <source src={videoUrl} type='video/mp4' />
+          ) : (
+            <p>Nenhum vídeo disponível</p>
+          )}
         </video>
 
         <input 
           type="text" 
           placeholder={`${
-            selectedPlayers.length + 1 == 4 
+            selectedPlayers.length + 1 === 4 
             ? dict.playerSearch.exhausted
             : dict.playerSearch.guess + ' ' + (selectedPlayers.length + 1) + ' ' + dict.playerSearch.to3}`}
           className="search" 
           onChange={handlePlayer} 
           value={playerName}
-          disabled={isDisabled || undefined}
+          disabled={isDisabled}
         />
 
         {players.length > 0 && (
@@ -68,7 +83,7 @@ export default function PlayerSearch({ leagueId, title }: PlayerSearchProps) {
         )}
 
         {selectedPlayers.map((player, index) => {
-          const comparisonResult = comparePlayerData(player, leagueId);
+          const comparisonResult = comparisonResults[player.player.id];
 
           return (
             <div key={index} className="result">
