@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import './header.css';
 import './sidebar.css';
@@ -15,6 +15,7 @@ import { Locale } from '@/config/i18n.config';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en-US');
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -23,11 +24,12 @@ export default function Header() {
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
 
-  const getCurrentLang = () => {
-    return localStorage.getItem('selectedLang') || 'en-US';
-  };
-
-  const currentLang = getCurrentLang();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('selectedLang');
+      setCurrentLang(savedLang || 'en-US');
+    }
+  }, []);
 
   return (
     <div>

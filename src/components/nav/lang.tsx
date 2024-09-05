@@ -10,13 +10,14 @@ import './lang.css';
 export const Lang = () => {
   const { lang } = useParams();
   const pathname = usePathname();
-
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-
-  const [currentLang, setCurrentLang] = useState(lang || localStorage.getItem('selectedLang') || locales[0].code);
+  const [currentLang, setCurrentLang] = useState(locales[0].code);
 
   useEffect(() => {
-    setCurrentLang(lang || localStorage.getItem('selectedLang') || locales[0].code);
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('selectedLang');
+      setCurrentLang(savedLang || locales[0].code);
+    }
   }, [lang]);
 
   const toggleDropdown = () => {
@@ -24,13 +25,15 @@ export const Lang = () => {
   };
 
   const handleLangChange = (lng: string) => {
-    localStorage.setItem('selectedLang', lng);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedLang', lng);
+    }
     setCurrentLang(lng);
   };
 
   const getPathname = (lng: string) => {
     const paths = pathname.split('/');
-    const newPath = paths.slice(2).join('/')
+    const newPath = paths.slice(2).join('/');
     return '/' + lng + '/' + newPath;
   }
 

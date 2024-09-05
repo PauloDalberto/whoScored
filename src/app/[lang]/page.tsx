@@ -9,16 +9,19 @@ import { Locale } from '@/config/i18n.config';
 import ModalScoredInfo from '@/components/modal/ModalScoredInfo';
 import { useParams } from 'next/navigation';
 import { getDictionaryUseClient } from '@/dictionaries/default-dictionary-use-client';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { lang } = useParams();
   const dict = getDictionaryUseClient(lang as Locale);
+  const [currentLang, setCurrentLang] = useState('en-US');
 
-  const getCurrentLang = () => {
-    return localStorage.getItem('selectedLang') || 'en-US';
-  };
-
-  const currentLang = getCurrentLang()
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('selectedLang');
+      setCurrentLang(savedLang || 'en-US');
+    }
+  }, []);
 
   return (
     <main className="container">
