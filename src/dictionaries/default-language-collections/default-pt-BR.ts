@@ -29,7 +29,8 @@ export const ptBR = {
 
   modalError: {
     wasClose: "Foi por pouco",
-    wasPlayer: "O jogador era:"
+    wasPlayer: "O jogador era:",
+    moreLucky: "Boa sorte na proxima tentativa"
   },
 
   modalSuccess: {

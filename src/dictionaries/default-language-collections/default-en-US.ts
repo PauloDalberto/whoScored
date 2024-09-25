@@ -29,7 +29,8 @@ export const enUS = {
 
   modalError: {
     wasClose: "It was close",
-    wasPlayer: "The player was:"
+    wasPlayer: "The player was:",
+    moreLucky: "Good luck on your next attempt"
   },
 
   modalSuccess: {
