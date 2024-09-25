@@ -8,10 +8,16 @@ export function useFetchPlayers({ playerName, leagueId }: UseFetchPlayersProps) 
       const fetchPlayers = async () => {
         const url = `https://api-football-v1.p.rapidapi.com/v3/players?search=${encodeURIComponent(playerName)}&league=${leagueId}`;
 
+        const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+        if (!apiKey) {
+          throw new Error('API key is not defined. Please set NEXT_PUBLIC_API_KEY in your environment variables.');
+        }
+
         const options = {
           method: 'GET',
           headers: {
-            'x-rapidapi-key': '34ba5f18f2msh826a9705ea11cb0p16a5b2jsne38545fbbf18',
+            'x-rapidapi-key': apiKey,
             'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
           }
         };
@@ -37,5 +43,4 @@ export function useFetchPlayers({ playerName, leagueId }: UseFetchPlayersProps) 
   }, [playerName, leagueId]);
 
   return players;
-
 }
